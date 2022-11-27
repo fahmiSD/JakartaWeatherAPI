@@ -23,9 +23,11 @@ dateJakarta = []
 tempJakarta = []
 fullDateJakarta = []
 jakartaWeather = []
+fullJakartaWeather = []
 
 for i in listWeather:
-    date = datetime.utcfromtimestamp(i['dt']).strftime("%a, %d %b %Y: ")
+    date = datetime.utcfromtimestamp(
+        i['dt']).strftime("%a, %d %b %Y: ")
     hourJakarta.append(datetime.utcfromtimestamp(
         i['dt']).strftime("%H:%M"))
     dateJakarta.append(datetime.utcfromtimestamp(
@@ -34,15 +36,17 @@ for i in listWeather:
     tempJakarta.append(str(celcius)[:5])
     jakartaWeather.append(date+str(celcius)[:5]+" "+chr(176)+"C")
     fullDateJakarta.append(date.rstrip(date[-1]))
+    fullJakartaWeather.append(datetime.utcfromtimestamp(
+        i['dt']).strftime("%a, %d %b %Y, %H:%M: "+str(celcius)[:5]+" "+chr(176)+"C"))
 
 for x in jakartaWeather:
     print(x)
 
-# graph by day
+    # graph by day
 
 dateJakartaGroup = []
 dateJakartaGroup = list(dict.fromkeys(dateJakarta))
-fullDateJakarta = list(dict.fromkeys(fullDateJakarta))
+fullDateJakartaGroup = list(dict.fromkeys(fullDateJakarta))
 
 day0 = []
 day1 = []
@@ -75,16 +79,16 @@ for i in listWeather:
 x1 = np.array(hourJakarta[:len(day0)])
 y1 = np.array(day0)
 
-x2 = np.array(hourJakarta[:len(day1)])
+x2 = np.array(hourJakarta[len(day0):len(day1)+2])
 y2 = np.array(day1)
 
-x3 = np.array(hourJakarta[:len(day2)])
+x3 = np.array(hourJakarta[len(day0):len(day2)+2])
 y3 = np.array(day2)
 
-x4 = np.array(hourJakarta[:len(day3)])
+x4 = np.array(hourJakarta[len(day0):len(day3)+2])
 y4 = np.array(day3)
 
-x5 = np.array(hourJakarta[:len(day4)])
+x5 = np.array(hourJakarta[len(day0):len(day4)+2])
 y5 = np.array(day4)
 
 x6 = np.array(hourJakarta[:len(day5)])
@@ -105,7 +109,7 @@ if len(dateJakartaGroup) == 5:
     plt.xticks(np.arange(len(x1)), x_order)
     for i, txt in enumerate(y1):
         ax1.annotate(str(txt)[:5], (x1[i], y1[i]))
-    plt.text(.01, 1, fullDateJakarta[0], ha='left',
+    plt.text(.01, 1, fullDateJakartaGroup[0], ha='left',
              va='bottom', transform=ax1.transAxes)
 
     # ax2
@@ -117,7 +121,7 @@ if len(dateJakartaGroup) == 5:
     plt.xticks(np.arange(len(x2)), x_order)
     for i, txt in enumerate(y2):
         ax2.annotate(str(txt)[:5], (x2[i], y2[i]))
-    plt.text(.01, 1, fullDateJakarta[1], ha='left',
+    plt.text(.01, 1, fullDateJakartaGroup[1], ha='left',
              va='bottom', transform=ax2.transAxes)
 
     # ax3
@@ -129,7 +133,7 @@ if len(dateJakartaGroup) == 5:
     plt.xticks(np.arange(len(x3)), x_order)
     for i, txt in enumerate(y3):
         ax3.annotate(str(txt)[:5], (x3[i], y3[i]))
-    plt.text(.01, 1, fullDateJakarta[2], ha='left',
+    plt.text(.01, 1, fullDateJakartaGroup[2], ha='left',
              va='bottom', transform=ax3.transAxes)
 
     # ax4
@@ -141,7 +145,7 @@ if len(dateJakartaGroup) == 5:
     plt.xticks(np.arange(len(x4)), x_order)
     for i, txt in enumerate(y4):
         ax4.annotate(str(txt)[:5], (x4[i], y4[i]))
-    plt.text(.01, 1, fullDateJakarta[3], ha='left',
+    plt.text(.01, 1, fullDateJakartaGroup[3], ha='left',
              va='bottom', transform=ax4.transAxes)
 
     # ax5
@@ -153,7 +157,7 @@ if len(dateJakartaGroup) == 5:
     plt.xticks(np.arange(len(x5)), x_order)
     for i, txt in enumerate(y5):
         ax5.annotate(str(txt)[:5], (x5[i], y5[i]))
-    plt.text(.01, 1, fullDateJakarta[4], ha='left',
+    plt.text(.01, 1, fullDateJakartaGroup[4], ha='left',
              va='bottom', transform=ax5.transAxes)
     plt.show()
 
@@ -172,7 +176,7 @@ if len(dateJakartaGroup) == 6:
     plt.xticks(np.arange(len(x1)), x_order)
     for i, txt in enumerate(y1):
         ax1.annotate(str(txt)[:5], (x1[i], y1[i]))
-    plt.text(.01, 1, fullDateJakarta[0], ha='left',
+    plt.text(.01, 1, fullDateJakartaGroup[0], ha='left',
              va='bottom', transform=ax1.transAxes)
 
     # ax2
@@ -184,7 +188,7 @@ if len(dateJakartaGroup) == 6:
     plt.xticks(np.arange(len(x2)), x_order)
     for i, txt in enumerate(y2):
         ax2.annotate(str(txt)[:5], (x2[i], y2[i]))
-    plt.text(.01, 1, fullDateJakarta[1], ha='left',
+    plt.text(.01, 1, fullDateJakartaGroup[1], ha='left',
              va='bottom', transform=ax2.transAxes)
 
     # ax3
@@ -196,7 +200,7 @@ if len(dateJakartaGroup) == 6:
     plt.xticks(np.arange(len(x3)), x_order)
     for i, txt in enumerate(y3):
         ax3.annotate(str(txt)[:5], (x3[i], y3[i]))
-    plt.text(.01, 1, fullDateJakarta[2], ha='left',
+    plt.text(.01, 1, fullDateJakartaGroup[2], ha='left',
              va='bottom', transform=ax3.transAxes)
 
     # ax4
@@ -208,7 +212,7 @@ if len(dateJakartaGroup) == 6:
     plt.xticks(np.arange(len(x4)), x_order)
     for i, txt in enumerate(y4):
         ax4.annotate(str(txt)[:5], (x4[i], y4[i]))
-    plt.text(.01, 1, fullDateJakarta[3], ha='left',
+    plt.text(.01, 1, fullDateJakartaGroup[3], ha='left',
              va='bottom', transform=ax4.transAxes)
 
     # ax5
@@ -220,7 +224,7 @@ if len(dateJakartaGroup) == 6:
     plt.xticks(np.arange(len(x5)), x_order)
     for i, txt in enumerate(y5):
         ax5.annotate(str(txt)[:5], (x5[i], y5[i]))
-    plt.text(.01, 1, fullDateJakarta[4], ha='left',
+    plt.text(.01, 1, fullDateJakartaGroup[4], ha='left',
              va='bottom', transform=ax5.transAxes)
 
     # ax6
@@ -232,7 +236,7 @@ if len(dateJakartaGroup) == 6:
     plt.xticks(np.arange(len(x6)), x_order)
     for i, txt in enumerate(y6):
         ax6.annotate(str(txt)[:5], (x6[i], y6[i]))
-    plt.text(.01, 1, fullDateJakarta[5], ha='left',
+    plt.text(.01, 1, fullDateJakartaGroup[5], ha='left',
              va='bottom', transform=ax6.transAxes)
 
     plt.show()
