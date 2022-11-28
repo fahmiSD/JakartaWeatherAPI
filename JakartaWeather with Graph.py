@@ -39,8 +39,8 @@ for i in listWeather:
     fullJakartaWeather.append(datetime.utcfromtimestamp(
         i['dt']).strftime("%a, %d %b %Y, %H:%M: "+str(celcius)[:5]+" "+chr(176)+"C"))
 
-for x in jakartaWeather:
-    print(x)
+# for x in jakartaWeather:
+    # print(x)
 
     # graph by day
 
@@ -79,20 +79,23 @@ for i in listWeather:
 x1 = np.array(hourJakarta[:len(day0)])
 y1 = np.array(day0)
 
-x2 = np.array(hourJakarta[len(day0):len(day1)+2])
+x2 = np.array(hourJakarta[len(day0):len(day1)+len(day0)])
 y2 = np.array(day1)
 
-x3 = np.array(hourJakarta[len(day0):len(day2)+2])
+x3 = np.array(hourJakarta[len(day0):len(day2)+len(day0)])
 y3 = np.array(day2)
 
-x4 = np.array(hourJakarta[len(day0):len(day3)+2])
+x4 = np.array(hourJakarta[len(day0):len(day3)+len(day0)])
 y4 = np.array(day3)
 
-x5 = np.array(hourJakarta[len(day0):len(day4)+2])
+x5 = np.array(hourJakarta[len(day0):len(day4)+len(day0)])
 y5 = np.array(day4)
 
 x6 = np.array(hourJakarta[:len(day5)])
 y6 = np.array(day5)
+
+for x in fullJakartaWeather:
+    print(x)
 
 if len(dateJakartaGroup) == 5:
     fig, (ax1, ax2, ax3, ax4, ax5) = plt.subplots(
